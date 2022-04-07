@@ -12,6 +12,7 @@ UFSMLiteComponent::UFSMLiteComponent()
 	this->CurState = 0;
 	this->NumOfStates = 0;
 	this->bPrintErrorsToLog = true;
+
 }
 
 // Called when the game starts
@@ -66,6 +67,9 @@ bool UFSMLiteComponent::SetState(const uint8 State)
 	CurState = State;
 	CurStateBeginTime = GetOwner()->GetWorld()->GetTimeSeconds();	//save game time when cur state starts
 	OnBeginState.Broadcast(CurState);
+
+	DebugPrintStateName();
+
 	return true;
 }
 
@@ -86,5 +90,14 @@ uint8 UFSMLiteComponent::GetCurrentState() const
 float UFSMLiteComponent::GetTime() const
 {
 	return (GetOwner()->GetWorld()->GetTimeSeconds() - CurStateBeginTime);
+}
+
+
+void UFSMLiteComponent::DebugPrintStateName() const
+{
+	if (bPrintStateChangesToLog) {
+		FString StateName = GetOwner()->GetActorLabel(); // +FString::FromInt((int32)GetCurrentState());
+		UE_LOG(LogTemp, Warning, TEXT("[FSMLite] %s.SetState: %d"), *StateName, GetCurrentState());
+	}
 }
 

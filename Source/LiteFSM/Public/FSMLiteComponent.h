@@ -51,6 +51,9 @@ public:
 
 	UFUNCTION(BlueprintPure, Category = "FSMLite")
 	float GetTime() const;
+
+	UFUNCTION(BlueprintCallable, Category = "FSMLite")
+	void DebugPrintStateName() const;
 	
 	UPROPERTY(BlueprintAssignable, Category = "FSMLite")
 	FOnBeginState OnBeginState;
@@ -61,6 +64,9 @@ public:
 	UPROPERTY(BlueprintAssignable, Category = "FSMLite")
 	FOnEndState OnEndState;
 	
-	UPROPERTY(BlueprintReadWrite, Category = "FSMLite")
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "FSMLite")
 	bool bPrintErrorsToLog;
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "FSMLite")
+	bool bPrintStateChangesToLog;
 };
