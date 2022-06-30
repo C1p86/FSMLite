@@ -96,7 +96,8 @@ float UFSMLiteComponent::GetTime() const
 void UFSMLiteComponent::DebugPrintStateName() const
 {
 	if (bPrintStateChangesToLog) {
-		FString StateName = GetOwner()->GetActorLabel(); // +FString::FromInt((int32)GetCurrentState());
+		//FString StateName = GetOwner()->GetActorLabel(); 
+		FString StateName = FString::FromInt((int32)GetCurrentState());
 		UE_LOG(LogTemp, Warning, TEXT("[FSMLite] %s.SetState: %d"), *StateName, GetCurrentState());
 	}
 }
